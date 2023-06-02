@@ -1,0 +1,3 @@
+python DIAN/src/average_sector_salary.py -r emr s3://jmmunoza-lab-emr/data/DIAN/data/dataempleados.txt  --conf-path=mrjob.conf --cluster-id=j-1W9CLE4ROVQNH --output-dir=s3://jmmunoza-lab-emr/data/DIAN/resultaveragesectorsalary
+python DIAN/src/average_employee_salary.py -r emr s3://jmmunoza-lab-emr/data/DIAN/data/dataempleados.txt  --conf-path=mrjob.conf --cluster-id=j-1W9CLE4ROVQNH --output-dir=s3://jmmunoza-lab-emr/data/DIAN/resultaverageemployeesalary
+python DIAN/src/employee_sector_history.py -r emr s3://jmmunoza-lab-emr/data/DIAN/data/dataempleados.txt  --conf-path=mrjob.conf --cluster-id=j-1W9CLE4ROVQNH --output-dir=s3://jmmunoza-lab-emr/data/DIAN/employeesectorhistory
