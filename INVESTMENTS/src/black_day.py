@@ -1,24 +1,41 @@
 from mrjob.job import MRJob
 
+
 class BlackDay(MRJob):
 
     def mapper(self, _, line):
         company, price, date = line.split(',')
-        yield company, (date, price)
+        yield None, (company, date, price)
 
     def reducer(self, key, values):
-        date_lowest_price = (None, 0)
-        date_highest_price = (None, 0)
+        companies = {}
         
-    
-        for date, price in values:
-            if date_lowest_price[1] == 0 or float(price) < date_lowest_price[1]:
-                date_lowest_price = (date, float(price))
+        for company, date, price in values:
+            if not company in companies:
+                companies[company] = []
                 
-            if date_highest_price[1] == 0 or float(price) > date_highest_price[1]:
-                date_highest_price = (date, float(price))
-
-        yield key, (date_lowest_price, date_highest_price)
+            companies[company].append((date, price))
+            
+        for company in companies:
+            lowest = companies[company][0]
+            for date, price in companies[company]:
+                if price < lowest[1]:
+                    lowest = (date, price)
+            
+            companies[company] = lowest          
+             
+        dates = {}
+        
+        for company in companies:
+            if not companies[company][0] in dates:
+                dates[companies[company][0]] = 1
+            else:
+                dates[companies[company][0]] += 1
+                
+        dates = sorted(dates.items(), key=lambda x: x[1], reverse=True)
+            
+        yield dates[0][0], dates[0][1]
+         
 
 if __name__ == '__main__':
     BlackDay.run()
