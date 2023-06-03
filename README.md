@@ -155,3 +155,10 @@ python MOVIES/src/worst_best_movie_per_genre.py -r emr s3://jmmunoza-lab-emr/dat
 
 ![image](https://github.com/jmmunoza/TET-Reto5/assets/69641274/51e8154a-fdd4-4243-896b-80302b95bffe)
 
+# 5. Estado del cluster
+
+Una vez ejecutadas las tareas, desde AWS se podrán ver completadas en la sección de Steps del cluster.
+
+![image](https://github.com/jmmunoza/TET-Reto5/assets/69641274/5d39bc84-fbff-4b1c-8c05-8ff5b5c6eda9)
+
+
